@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'EMIA DEMO',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'EMIA DEMO'),
     );
   }
 }
@@ -58,6 +58,12 @@ class _MyHomePageState extends State<MyHomePage> {
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
       _counter++;
+    });
+  }
+
+  void _decrementCounter() {
+    setState(() {
+      _counter--; // testing
     });
   }
 
@@ -105,11 +111,27 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Container(
+              margin: EdgeInsets.only(right: 20.0),
+              child: FloatingActionButton.extended(
+                onPressed: _incrementCounter,
+                tooltip: 'Increment',
+                label: Text('Increment'),
+                icon: const Icon(Icons.add),
+              )), // This trailing comma makes auto-formatting nicer for build methods.,
+          Container(
+              margin: EdgeInsets.only(top: 100.0),
+              child: FloatingActionButton.extended(
+                onPressed: _decrementCounter,
+                tooltip: 'Decrement',
+                label: Text('Decrement'),
+                icon: const Icon(Icons.remove),
+              )),
+        ],
+      ),
     );
   }
 }
