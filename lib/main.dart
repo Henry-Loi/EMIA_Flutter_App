@@ -75,63 +75,105 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+    return MaterialApp(
+        home: Scaffold(
+            appBar: AppBar(
+              // Here we take the value from the MyHomePage object that was created by
+              // the App.build method, and use it to set our appbar title.
+              title: Text(widget.title),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+            body: Center(
+              // Center is a layout widget. It takes a single child and positions it
+              // in the middle of the parent.
+              child: Column(
+                // Column is also a layout widget. It takes a list of children and
+                // arranges them vertically. By default, it sizes itself to fit its
+                // children horizontally, and tries to be as tall as its parent.
+                //
+                // Invoke "debug painting" (press "p" in the console, choose the
+                // "Toggle Debug Paint" action from the Flutter Inspector in Android
+                // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
+                // to see the wireframe for each widget.
+                //
+                // Column has various properties to control how it sizes itself and
+                // how it positions its children. Here we use mainAxisAlignment to
+                // center the children vertically; the main axis here is the vertical
+                // axis because Columns are vertical (the cross axis would be
+                // horizontal).
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  const Text(
+                    'You have pushed the button this many times:',
+                  ),
+                  Text(
+                    '$_counter',
+                    style: Theme.of(context).textTheme.headlineMedium,
+                  ),
+                ],
+              ),
             ),
-          ],
-        ),
-      ),
-      floatingActionButton: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Container(
-              margin: EdgeInsets.only(right: 20.0),
-              child: FloatingActionButton.extended(
-                onPressed: _incrementCounter,
-                tooltip: 'Increment',
-                label: Text('Increment'),
-                icon: const Icon(Icons.add),
-              )), // This trailing comma makes auto-formatting nicer for build methods.,
-          Container(
-              margin: EdgeInsets.only(top: 100.0),
-              child: FloatingActionButton.extended(
-                onPressed: _decrementCounter,
-                tooltip: 'Decrement',
-                label: Text('Decrement'),
-                icon: const Icon(Icons.remove),
-              )),
-        ],
-      ),
-    );
+            floatingActionButton: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                    margin: EdgeInsets.only(right: 20.0),
+                    child: FloatingActionButton.extended(
+                      onPressed: _incrementCounter,
+                      tooltip: 'Increment',
+                      label: Text('Increment'),
+                      icon: const Icon(Icons.add),
+                    )), // This trailing comma makes auto-formatting nicer for build methods.,
+                Container(
+                    margin: EdgeInsets.only(top: 100.0),
+                    child: FloatingActionButton.extended(
+                      onPressed: _decrementCounter,
+                      tooltip: 'Decrement',
+                      label: Text('Decrement'),
+                      icon: const Icon(Icons.remove),
+                    )),
+              ],
+            ),
+            bottomNavigationBar: BottomNavigationBar(
+              items: const [
+                BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.notification_important), label: 'Notice'),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.settings), label: 'Settings'),
+              ],
+            ),
+            drawer: Drawer(
+              child: ListView(
+                padding: EdgeInsets.zero,
+                children: [
+                  const DrawerHeader(
+                    decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 125, 120, 231),
+                        image:
+                            DecorationImage(image: AssetImage('img/user.png')),
+                        shape: BoxShape.circle),
+                    child: Text('EMIA'),
+                  ),
+                  ListTile(
+                    title: const Text('Cat'),
+                    onTap: () {
+                      _decrementCounter(); // TODO
+                    },
+                  ),
+                  ListTile(
+                    title: const Text('Pig'),
+                    onTap: () {
+                      _incrementCounter(); // TODO
+                    },
+                  ),
+                  ListTile(
+                    title: const Text('Hamster'),
+                    onTap: () {
+                      _incrementCounter(); // TODO
+                    },
+                  ),
+                ],
+              ),
+            )));
   }
 }
