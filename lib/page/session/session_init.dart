@@ -43,12 +43,6 @@ class _DropDown extends State<DropDown> {
           }
         });
       },
-      // items: widget.list.map<DropdownMenuItem<String>>((String value) {
-      //   return DropdownMenuItem<String>(
-      //     value: value,
-      //     child: Text(value),
-      //   );
-      // }).toList()
       items: widget.list.asMap().entries.map((entry) {
         return DropdownMenuItem<int>(
           value: entry.key,

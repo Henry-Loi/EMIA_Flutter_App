@@ -36,9 +36,7 @@ class _Session extends State<Session> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    // session = Provider.of<SessionModel>(context, listen: false);
-    // session.setPet(0);
-    // session.setDuration(0);
+    session = Provider.of<SessionModel>(context, listen: false);
     _sessionPage = [
       const InitSession(),
       const StartSession(),
@@ -52,6 +50,11 @@ class _Session extends State<Session> {
       TextButton(
         onPressed: () => setState(() {
           _started = !_started;
+          if (!_started) {
+            //reset state
+            session.setPet(0);
+            session.setDuration(0);
+          }
         }),
         child: _started ? const Text("stop") : const Text("start"),
       )
