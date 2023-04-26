@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import "package:emia_flutter_app/page/session/session_init.dart";
 import "package:emia_flutter_app/page/session/session_start.dart";
+import 'package:provider/provider.dart';
 
 class SessionModel extends ChangeNotifier {
   int _pet = 0;
   int _duration = 0;
+
+  int get pet => _pet;
+  int get duration => _duration;
+
   void setPet(int pet) {
     _pet = pet;
     notifyListeners();
@@ -24,17 +29,19 @@ class Session extends StatefulWidget {
 }
 
 class _Session extends State<Session> {
-  int _duration = 15 * 60;
-  int _pet = 0;
   bool _started = false;
   late List<Widget> _sessionPage;
+  late SessionModel session;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    // session = Provider.of<SessionModel>(context, listen: false);
+    // session.setPet(0);
+    // session.setDuration(0);
     _sessionPage = [
       const InitSession(),
-      StartSession(duration: _duration, pet: _pet),
+      const StartSession(),
     ];
   }
 

@@ -54,16 +54,16 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _currentIndex = 0;
 
-  List<Widget> _pages = [
-    Session(),
-    Login(),
-    Settings(),
-  ];
   // List<Widget> _pages = [
-  //   ChangeNotifierProvider(create: (_) => SessionModel(), child: Session()),
+  //   Session(),
   //   Login(),
   //   Settings(),
   // ];
+  List<Widget> _pages = [
+    ChangeNotifierProvider(create: (_) => SessionModel(), child: Session()),
+    Login(),
+    Settings(),
+  ];
 
   @override
   Widget build(BuildContext context) {

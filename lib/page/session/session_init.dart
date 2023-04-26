@@ -1,34 +1,58 @@
 import 'package:flutter/material.dart';
+import "package:emia_flutter_app/page/pets/pet.dart";
+import "package:emia_flutter_app/page/session/session.dart";
+import 'package:provider/provider.dart';
+
+enum DropDownType { duration, pet }
+
+List<String> durationTypesString = [
+  "15 minutes",
+  "30 minutes",
+  "45 minutes",
+  "60 minutes"
+];
 
 class DropDown extends StatefulWidget {
-  DropDown({super.key, required this.list});
+  DropDown({super.key, required this.list, required this.type});
   late List<String> list;
+  late DropDownType type;
   @override
   State<DropDown> createState() => _DropDown();
 }
 
 class _DropDown extends State<DropDown> {
-  late String? _dropDownValue;
-
+  int _dropDownValue = 0;
+  late SessionModel session;
   @override
   void initState() {
     super.initState();
-    _dropDownValue = widget.list[0];
+    session = Provider.of<SessionModel>(context, listen: false);
   }
 
   @override
   Widget build(BuildContext context) {
-    return DropdownButton<String>(
+    return DropdownButton<int>(
       value: _dropDownValue,
-      onChanged: (String? newValue) {
+      onChanged: (int? newValue) {
         setState(() {
-          _dropDownValue = newValue;
+          _dropDownValue = newValue!;
+          if (widget.type == DropDownType.duration) {
+            session.setDuration(newValue!);
+          } else {
+            session.setPet(newValue!);
+          }
         });
       },
-      items: widget.list.map<DropdownMenuItem<String>>((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Text(value),
+      // items: widget.list.map<DropdownMenuItem<String>>((String value) {
+      //   return DropdownMenuItem<String>(
+      //     value: value,
+      //     child: Text(value),
+      //   );
+      // }).toList()
+      items: widget.list.asMap().entries.map((entry) {
+        return DropdownMenuItem<int>(
+          value: entry.key,
+          child: Text(entry.value),
         );
       }).toList(),
     );
@@ -45,21 +69,9 @@ class InitSession extends StatelessWidget {
           const Text(
             'Choose the duration of your focus session',
           ),
-          DropDown(list: <String>[
-            "15 minutes",
-            "30 minutes",
-            "45 minutes",
-            "60 minutes",
-          ]),
+          DropDown(list: durationTypesString, type: DropDownType.duration),
           const Text("Choose your pet"),
-          DropDown(list: <String>[
-            "cat",
-            "dog",
-            "bird",
-            "fish",
-            "hamster",
-            "rabbit"
-          ]),
+          DropDown(list: petTypesString, type: DropDownType.pet),
         ]));
   }
 }
