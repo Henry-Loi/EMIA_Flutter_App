@@ -3,9 +3,10 @@ import "package:emia_flutter_app/page/session/session.dart";
 import 'package:provider/provider.dart';
 import "package:emia_flutter_app/page/login.dart";
 import "package:emia_flutter_app/page/settings.dart";
+import 'package:emia_flutter_app/iframescreen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -28,7 +29,8 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'EMIA DEMO'),
+      // home: const MyHomePage(title: 'EMIA DEMO'),
+      home: IframeScreen(),
     );
   }
 }

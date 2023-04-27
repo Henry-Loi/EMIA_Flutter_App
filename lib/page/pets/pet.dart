@@ -13,6 +13,11 @@ class Pet extends StatelessWidget {
   final int pet;
   List<Widget> pets = [
     const Cat(),
+    // SizedBox(
+    //   width: 600,
+    //   height: 200,
+    //   child: Hamster(),
+    // ),
     const Hamster(),
     const Pig(),
   ];
